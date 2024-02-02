@@ -1,0 +1,234 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model CadViewModel
+
+<div class="container mt-3">
+    <h2 class="mb-3">CAD Input</h2>
+    <form asp-action="Index" method="get" class="row">
+        <div class="form-group col-md-2 mb-2">
+            <label asp-for="CadInput.Body">Select Body</label>
+            <select asp-for="CadInput.Body" class="form-control">
+                <option value="All" selected>All</option>
+                <option value="Merc">Mercury</option>
+                <option value="Venus">Venus</option>
+                <option value="Earth">Earth</option>
+                <option value="Mars">Mars</option>
+                <option value="Juptr">Jupiter</option>
+                <option value="Satrn">Saturn</option>
+                <option value="Urnus">Uranus</option>
+                <option value="Neptn">Neptune</option>
+                <option value="Pluto">Pluto</option>
+                <option value="Moon">Moon</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2 mb-2">
+            <label asp-for="CadInput.ObjectType">Object Type</label>
+            <select asp-for="CadInput.ObjectType" class="form-control">
+                <option value="all">All</option>
+                <option value="pha">PHA</option>
+                <option value="nea">NEA</option>
+                <option value="comet">Comet</option>
+                <option value="nea-comet">NEA-Comet</option>
+                <option value="neo">NEO</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2 mb-2">
+            <label asp-for="CadInput.StartDate">Start Date</label>
+            <input asp-for="CadInput.StartDate" type="date" class="form-control" />
+        </div>
+        <div class="form-group col-md-2 mb-2">
+            <label asp-for="CadInput.EndDate">End Date</label>
+            <input asp-for="CadInput.EndDate" type="date" class="form-control" />
+        </div>
+        <div class="form-group col-md-1 mb-2">
+            <label asp-for="CadInput.MinDistance">Minimum Distance (au)</label>
+            <input asp-for="CadInput.MinDistance" type="number" step="any" class="form-control" />
+        </div>
+        <div class="form-group col-md-1 mb-2">
+            <label asp-for="CadInput.MaxDistance">Maximum Distance (au)</label>
+            <input asp-for="CadInput.MaxDistance" type="number" step="any" class="form-control" />
+        </div>
+        <div class="col-md-2 mb-2 align-self-end">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    <div class="row mt-4">
+        <div class="col">
+            <p class="small text-muted">
+                <ul>
+                    <li>One Astronomical Unit (AU) is approximately 149.6 million kilometers.</li>
+                    <li>The average distance from the Earth to the Sun is about 1 AU.</li>
+                    <li>For context, the average distance from the Earth to the Moon is about 0.00257 AU.</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <h2 class="mb-3">CAD Data</h2>
+    <div id="dataContainer">
+        @await Html.PartialAsync("_CadData", Model.CadData)
+    </div>
+</div>
+<div class="container mt-3">
+    <p class="text-muted"><small>API URL used: <a href="@ViewData["ApiUrl"]" target="_blank">@ViewData["ApiUrl"]</a></small></p>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {// Function to save selections to a cookie
+            function saveSelectionsToCookie(selections) {
+                const selectionsString = JSON.stringify(selections);
+                const d = new Date();
+                d.setTime(d.getTime() + (90 * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + d.toUTCString();
+                document.cookie = "userSelections=" + selectionsString + ";" + expires + ";path=/";
+            }
+            function getCookie(name) {
+                const nameEQ = name + "=";
+                const ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+            function loadSelectionsFromCookie() {
+                const selectionsString = getCookie('userSelections');
+                if (selectionsString) {
+                    const selections = JSON.parse(selectionsString);
+                    $('#CadInput_Body').val(selections.body);
+                    $('#CadInput_ObjectType').val(selections.objectType);
+                    $('#CadInput_StartDate').val(selections.startDate);
+                    $('#CadInput_EndDate').val(selections.endDate);
+                    $('#CadInput_MinDistance').val(selections.minDistance);
+                    $('#CadInput_MaxDistance').val(selections.maxDistance);
+                }
+            }
+            loadSelectionsFromCookie();
+            $('form').submit(function (e) {
+                e.preventDefault();
+                var userSelections = {
+                    body: $('#CadInput_Body').val(),
+                    objectType: $('#CadInput_ObjectType').val(),
+                    startDate: $('#CadInput_StartDate').val(),
+                    endDate: $('#CadInput_EndDate').val(),
+                    minDistance: $('#CadInput_MinDistance').val(),
+                    maxDistance: $('#CadInput_MaxDistance').val()
+                };
+                saveSelectionsToCookie(userSelections);
+                this.submit();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            function loadSelectionsFromCookie() {
+                const selectionsString = getCookie('userSelections');
+                if (selectionsString) {
+                    const selections = JSON.parse(selectionsString);
+                    $('#CadInput_Body').val(selections.body);
+                    $('#CadInput_ObjectType').val(selections.objectType);
+                    $('#CadInput_StartDate').val(selections.startDate);
+                    $('#CadInput_EndDate').val(selections.endDate);
+                    $('#CadInput_MinDistance').val(selections.minDistance);
+                    $('#CadInput_MaxDistance').val(selections.maxDistance);
+                }
+            }
+            loadSelectionsFromCookie();
+        });
+    </script>
+    <script>
+        function sortTableByColumn(table, column, asc = true) {
+            const dirModifier = asc ? 1 : -1;
+            const tBody = table.tBodies[0];
+            const rows = Array.from(tBody.querySelectorAll("tr"));
+            const sortedRows = rows.sort((a, b) => {
+                const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+                const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+
+                return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+            });
+            while (tBody.firstChild) {
+                tBody.removeChild(tBody.firstChild);
+            }
+            tBody.append(...sortedRows);
+            table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+            table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
+            table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+        }
+
+        document.querySelectorAll(".table th").forEach(headerCell => {
+            headerCell.addEventListener("click", () => {
+                const tableElement = headerCell.parentElement.parentElement.parentElement;
+                const headerIndex = Array.prototype.indexOf.call(headerCell.parentNode.children, headerCell);
+                const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+                sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var ctx = $('#CadChart').get(0).getContext('2d');
+            var chart;
+
+            function renderChart(data, label) {
+                if (chart) {
+                    chart.destroy();
+                }
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: label,
+                            data: data.values,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1,
+                            fill: false,
+                            backgroundColor: 'rgba(0, 123, 255, 0.5)'
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+            }
+            $(document).on('change', '#ChartSelect', function () {
+                var selectedColumn = parseInt($(this).val());
+                var labels = [];
+                var values = [];
+
+                $('table tbody tr').each(function () {
+                    labels.push($(this).find('td:first').text());
+                    values.push(parseFloat($(this).find('td').eq(selectedColumn + 1).text()));
+                });
+
+                var data = { labels: labels, values: values };
+                var selectedText = $("#ChartSelect option:selected").text();
+                renderChart(data, selectedText);
+            });
+            $('#ChartSelect').trigger('change');
+        });
+    </script>
+}

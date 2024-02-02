@@ -1,0 +1,33 @@
+C:\Dev\bingoal\SBDB CAD\bin\Debug\netcoreapp2.1\SBDB CAD.deps.json
+C:\Dev\bingoal\SBDB CAD\bin\Debug\netcoreapp2.1\SBDB CAD.runtimeconfig.json
+C:\Dev\bingoal\SBDB CAD\bin\Debug\netcoreapp2.1\SBDB CAD.runtimeconfig.dev.json
+C:\Dev\bingoal\SBDB CAD\bin\Debug\netcoreapp2.1\SBDB CAD.dll
+C:\Dev\bingoal\SBDB CAD\bin\Debug\netcoreapp2.1\SBDB CAD.pdb
+C:\Dev\bingoal\SBDB CAD\bin\Debug\netcoreapp2.1\SBDB CAD.Views.dll
+C:\Dev\bingoal\SBDB CAD\bin\Debug\netcoreapp2.1\SBDB CAD.Views.pdb
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.csprojAssemblyReference.cache
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.csproj.CoreCompileInputs.cache
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.RazorAssemblyInfo.cache
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.RazorAssemblyInfo.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.AssemblyInfoInputs.cache
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.AssemblyInfo.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.TagHelpers.input.cache
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.TagHelpers.output.cache
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.RazorCoreGenerate.cache
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.RazorTargetAssemblyInfo.cache
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.RazorTargetAssemblyInfo.cs
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.Views.pdb
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.dll
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.pdb
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\SBDB CAD.csproj.CopyComplete
+C:\Dev\bingoal\SBDB CAD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CadData.g.cshtml.cs
